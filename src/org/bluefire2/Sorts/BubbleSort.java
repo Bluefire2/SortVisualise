@@ -18,7 +18,9 @@ public class BubbleSort extends Sort {
         do {
             swapped = false;
             for(int i = 1; i < dataCopy.length; i++) {
-                if(access(dataCopy, i - 1, ops) > access(dataCopy, i, ops)) {
+                int previous = access(dataCopy, i - 1, ops);
+                int current = access(dataCopy, i, ops);
+                if(gt(previous, current, ops)) {
                     swap(dataCopy, i - 1, i, ops);
                     swapped = true;
                 }

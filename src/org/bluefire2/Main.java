@@ -14,7 +14,5 @@ public class Main {
             System.out.println(op);
             op.apply(data);
         }
-
-        System.out.println("Done");
     }
 }
