@@ -1,8 +1,5 @@
 package org.bluefire2;
 
-import java.util.Formatter;
-import java.util.Locale;
-
 public class Swap implements Operation {
     private final int a;
     private final int b;
