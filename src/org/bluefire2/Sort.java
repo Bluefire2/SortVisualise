@@ -1,7 +1,6 @@
-package org.bluefire2.Sorts;
+package org.bluefire2;
 
-import org.bluefire2.Operation;
-import org.bluefire2.Swap;
+import org.bluefire2.Operations.Swap;
 import java.util.ArrayList;
 
 public abstract class Sort {

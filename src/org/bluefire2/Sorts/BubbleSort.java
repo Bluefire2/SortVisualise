@@ -1,6 +1,7 @@
 package org.bluefire2.Sorts;
 
 import org.bluefire2.Operation;
+import org.bluefire2.Sort;
 
 import java.util.ArrayList;
 

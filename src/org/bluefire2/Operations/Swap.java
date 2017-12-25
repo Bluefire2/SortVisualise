@@ -1,4 +1,7 @@
-package org.bluefire2;
+package org.bluefire2.Operations;
+
+import org.bluefire2.InvalidOperationException;
+import org.bluefire2.Operation;
 
 public class Swap implements Operation {
     private final int a;
