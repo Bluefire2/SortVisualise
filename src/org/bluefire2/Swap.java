@@ -1,5 +1,8 @@
 package org.bluefire2;
 
+import java.util.Formatter;
+import java.util.Locale;
+
 public class Swap implements Operation {
     private final int a;
     private final int b;
@@ -11,16 +14,20 @@ public class Swap implements Operation {
 
     @Override
     public int[] apply(int[] data) throws InvalidOperationException {
-        int[] dataCopy = new int[data.length];
-        System.arraycopy(data, 0, dataCopy, 0, data.length);
         try {
-            int temp = dataCopy[a];
-            dataCopy[a] = dataCopy[b];
-            dataCopy[b] = temp;
+            int temp = data[a];
+            data[a] = data[b];
+            data[b] = temp;
         } catch(ArrayIndexOutOfBoundsException e) {
+            // swap cannot be applied due to invalid index
             throw new InvalidOperationException("Invalid swap index.");
         }
 
-        return dataCopy;
+        return data;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Swapping index %d with index %d", a, b);
     }
 }
