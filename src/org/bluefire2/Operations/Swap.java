@@ -13,7 +13,7 @@ public class Swap implements Operation {
     }
 
     @Override
-    public int[] apply(int[] data) throws InvalidOperationException {
+    public void apply(int[] data) throws InvalidOperationException {
         try {
             int temp = data[a];
             data[a] = data[b];
@@ -22,8 +22,6 @@ public class Swap implements Operation {
             // swap cannot be applied due to invalid index
             throw new InvalidOperationException("Invalid swap index.");
         }
-
-        return data;
     }
 
     @Override

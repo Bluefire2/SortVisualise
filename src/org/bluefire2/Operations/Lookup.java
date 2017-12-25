@@ -11,11 +11,9 @@ public class Lookup implements Operation {
     }
 
     @Override
-    public int[] apply(int[] data) throws InvalidOperationException {
+    public void apply(int[] data) throws InvalidOperationException {
         if(i >= data.length || i < 0) {
             throw new InvalidOperationException("Invalid lookup index.");
-        } else {
-            return data;
         }
     }
 

@@ -3,13 +3,19 @@ package org.bluefire2.Operations;
 import org.bluefire2.Operation;
 
 public class Comparison implements Operation {
+    private final String type;
+
+    public Comparison(String type) {
+        this.type = type;
+    }
+
     @Override
-    public int[] apply(int[] data) {
-        return data;
+    public void apply(int[] data) {
+        // do nothing
     }
 
     @Override
     public String toString() {
-        return "Comparing";
+        return String.format("Comparing: %s", type);
     }
 }
