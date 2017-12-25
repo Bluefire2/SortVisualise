@@ -6,7 +6,6 @@ import org.bluefire2.Sort;
 import java.util.ArrayList;
 
 public class BubbleSort extends Sort {
-
     @Override
     public ArrayList<Operation> run(int[] data) {
         final ArrayList<Operation> ops = new ArrayList<>();
