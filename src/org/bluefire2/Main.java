@@ -1,7 +1,6 @@
 package org.bluefire2;
 
-import org.bluefire2.Sorts.BubbleSort;
-import org.bluefire2.Sorts.InsertionSort;
+import org.bluefire2.Sorts.*;
 
 import java.util.ArrayList;
 
