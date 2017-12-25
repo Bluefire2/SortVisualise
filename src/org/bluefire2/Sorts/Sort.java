@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public abstract class Sort {
     // some helper methods
-    private void swap(int[] data, int a, int b, ArrayList<Operation> ops) {
+    protected void swap(int[] data, int a, int b, ArrayList<Operation> ops) {
         int temp = data[a];
         data[a] = data[b];
         data[b] = temp;
