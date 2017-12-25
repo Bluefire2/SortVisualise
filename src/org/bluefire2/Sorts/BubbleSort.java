@@ -6,6 +6,7 @@ import org.bluefire2.Sort;
 import java.util.ArrayList;
 
 public class BubbleSort extends Sort {
+
     @Override
     public ArrayList<Operation> run(int[] data) {
         final ArrayList<Operation> ops = new ArrayList<>();
@@ -17,7 +18,7 @@ public class BubbleSort extends Sort {
         do {
             swapped = false;
             for(int i = 1; i < dataCopy.length; i++) {
-                if(dataCopy[i - 1] > dataCopy[i]) {
+                if(access(dataCopy, i - 1, ops) > access(dataCopy, i, ops)) {
                     swap(dataCopy, i - 1, i, ops);
                     swapped = true;
                 }
