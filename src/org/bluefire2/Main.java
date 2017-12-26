@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
         App app = new App();
 //        int[] data = new int[1000];
 //        for (int i = 0; i < data.length; i++) {
