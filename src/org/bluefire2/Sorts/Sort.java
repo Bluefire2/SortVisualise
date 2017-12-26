@@ -5,6 +5,7 @@ import org.bluefire2.Operations.Comparison;
 import org.bluefire2.Operations.Lookup;
 import org.bluefire2.Operations.Swap;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Sort {
     // some helper methods
@@ -126,4 +127,13 @@ public abstract class Sort {
     }
 
     public abstract ArrayList<Operation> run(int[] data);
+
+    public static int[] randomArray(int size, int min, int max) {
+        int[] data = new int[size];
+        for (int i = 0; i < data.length; i++) {
+            data[i] = ThreadLocalRandom.current().nextInt(min, max + 1);
+        }
+
+        return data;
+    }
 }
