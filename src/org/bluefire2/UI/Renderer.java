@@ -1,4 +1,4 @@
-package org.bluefire2;
+package org.bluefire2.UI;
 
 import javax.swing.*;
 import java.awt.*;
