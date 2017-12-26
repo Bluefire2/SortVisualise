@@ -1,7 +1,5 @@
 package org.bluefire2.Operations;
 
-import org.bluefire2.Operation;
-
 public class Comparison implements Operation {
     private final String type;
 

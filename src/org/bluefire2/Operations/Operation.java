@@ -1,4 +1,6 @@
-package org.bluefire2;
+package org.bluefire2.Operations;
+
+import org.bluefire2.InvalidOperationException;
 
 public interface Operation {
     /**

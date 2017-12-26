@@ -1,5 +1,6 @@
-package org.bluefire2;
+package org.bluefire2.Sorts;
 
+import org.bluefire2.Operations.Operation;
 import org.bluefire2.Operations.Comparison;
 import org.bluefire2.Operations.Lookup;
 import org.bluefire2.Operations.Swap;
@@ -17,7 +18,7 @@ public abstract class Sort {
      * @param b The index of the second element.
      * @param ops The list of operations to add to.
      */
-    protected void swap(int[] data, int a, int b, ArrayList<Operation> ops) {
+    void swap(int[] data, int a, int b, ArrayList<Operation> ops) {
         int temp = data[a];
         data[a] = data[b];
         data[b] = temp;
@@ -37,7 +38,7 @@ public abstract class Sort {
      * @param ops The list of operations to add to.
      * @return The element of `data` at index `i`.
      */
-    protected int access(int[] data, int i, ArrayList<Operation> ops) {
+    int access(int[] data, int i, ArrayList<Operation> ops) {
         ops.add(new Lookup(i));
         return data[i];
     }
@@ -50,7 +51,7 @@ public abstract class Sort {
      * @param value The value to write.
      * @param ops The list of operations to add to.
      */
-    protected void set(int[] data, int i, int value, ArrayList<Operation> ops) {
+    void set(int[] data, int i, int value, ArrayList<Operation> ops) {
         ops.add(new Lookup(i));
         data[i] = value;
     }
@@ -65,7 +66,7 @@ public abstract class Sort {
      * @param ops The list of operations to add to.
      * @return True if the two integers are equal, false if they are not equal.
      */
-    protected boolean equal(int a, int b, ArrayList<Operation> ops) {
+    boolean equal(int a, int b, ArrayList<Operation> ops) {
         ops.add(new Comparison("eq"));
         return a == b;
     }
@@ -78,7 +79,7 @@ public abstract class Sort {
      * @param ops The list of operations to add to.
      * @return True if the first integer is less than or equal to the second integer, false if it is not.
      */
-    protected boolean le(int a, int b, ArrayList<Operation> ops) {
+    boolean le(int a, int b, ArrayList<Operation> ops) {
         ops.add(new Comparison("le"));
         return a <= b;
     }
@@ -91,7 +92,7 @@ public abstract class Sort {
      * @param ops The list of operations to add to.
      * @return True if the first integer is less than the second integer, false if it is not.
      */
-    protected boolean lt(int a, int b, ArrayList<Operation> ops) {
+    boolean lt(int a, int b, ArrayList<Operation> ops) {
         ops.add(new Comparison("lt"));
         return a < b;
     }
@@ -104,7 +105,7 @@ public abstract class Sort {
      * @param ops The list of operations to add to.
      * @return True if the first integer is greater than the second integer, false if it is not.
      */
-    protected boolean gt(int a, int b, ArrayList<Operation> ops) {
+    boolean gt(int a, int b, ArrayList<Operation> ops) {
         ops.add(new Comparison("gt"));
         return a > b;
     }
@@ -119,7 +120,7 @@ public abstract class Sort {
      * @param ops The list of operations to add to.
      * @return True if the first integer is greater than or equal to the second integer, false if it is not.
      */
-    protected boolean ge(int a, int b, ArrayList<Operation> ops) {
+    boolean ge(int a, int b, ArrayList<Operation> ops) {
         ops.add(new Comparison("ge"));
         return a >= b;
     }
