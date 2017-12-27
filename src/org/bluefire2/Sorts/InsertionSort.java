@@ -14,8 +14,8 @@ public class InsertionSort extends Sort {
 
         for(int i = 1; i < dataCopy.length; i++) {
             for(int j = i; j > 0; j--) {
-                int previous = access(dataCopy, j - 1, ops);
-                int current = access(dataCopy, j, ops);
+                int previous = lookup(dataCopy, j - 1, ops);
+                int current = lookup(dataCopy, j, ops);
                 if(lt(previous, current, ops)) {
                     break;
                 } else {

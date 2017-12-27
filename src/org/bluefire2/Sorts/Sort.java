@@ -40,7 +40,7 @@ public abstract class Sort {
      * @param ops The list of operations to add to.
      * @return The element of `data` at index `i`.
      */
-    int access(int[] data, int i, Queue<Operation> ops) {
+    int lookup(int[] data, int i, Queue<Operation> ops) {
         ops.add(new Lookup(i));
         return data[i];
     }

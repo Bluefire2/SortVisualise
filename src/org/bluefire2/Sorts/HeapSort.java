@@ -48,16 +48,16 @@ public class HeapSort extends Sort {
             int child = leftChild(root);
             int swap = root;
 
-            int swapElem = access(data, swap, ops);
-            int childElem = access(data, child, ops);
+            int swapElem = lookup(data, swap, ops);
+            int childElem = lookup(data, child, ops);
             if(lt(swapElem, childElem, ops)) {
                 swap = child;
             }
 
             // right child is child + 1
             if(child + 1 <= end) {
-                swapElem = access(data, swap, ops);
-                childElem = access(data, child + 1, ops);
+                swapElem = lookup(data, swap, ops);
+                childElem = lookup(data, child + 1, ops);
                 if(lt(swapElem, childElem, ops)) {
                     swap = child + 1;
                 }

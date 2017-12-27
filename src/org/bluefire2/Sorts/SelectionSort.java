@@ -17,7 +17,7 @@ public class SelectionSort extends Sort {
             int smallestValue = Integer.MAX_VALUE;
 
             for(int j = i; j < dataCopy.length; j++) {
-                int current = access(dataCopy, j, ops);
+                int current = lookup(dataCopy, j, ops);
                 if(lt(current, smallestValue, ops) || smallestIndex == -1) {
                     smallestIndex = j;
                     smallestValue = current;

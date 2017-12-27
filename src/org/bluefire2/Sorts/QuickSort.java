@@ -36,12 +36,12 @@ public class QuickSort extends Sort {
 
             do {
                 i++;
-                current = access(data, i, ops);
+                current = lookup(data, i, ops);
             } while(lt(current, pivot, ops));
 
             do {
                 j--;
-                current = access(data, j, ops);
+                current = lookup(data, j, ops);
             } while(gt(current, pivot, ops));
 
             if(i >= j) {
