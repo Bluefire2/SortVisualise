@@ -2,12 +2,12 @@ package org.bluefire2.Sorts;
 
 import org.bluefire2.Operations.Operation;
 
-import java.util.ArrayList;
+import java.util.Stack;
 
 public class QuickSort extends Sort {
     @Override
-    public ArrayList<Operation> run(int[] data) {
-        final ArrayList<Operation> ops = new ArrayList<>();
+    public Stack<Operation> run(int[] data) {
+        final Stack<Operation> ops = new Stack<>();
         int[] dataCopy = new int[data.length];
         System.arraycopy(data, 0, dataCopy, 0, data.length);
 
@@ -17,7 +17,7 @@ public class QuickSort extends Sort {
         return ops;
     }
 
-    private void quicksort(int[] data, int start, int end, ArrayList<Operation> ops) {
+    private void quicksort(int[] data, int start, int end, Stack<Operation> ops) {
         if(start < end) {
             int pIndex = partition(data, start, end, ops);
             quicksort(data, start, pIndex, ops);
@@ -25,7 +25,7 @@ public class QuickSort extends Sort {
         }
     }
 
-    private int partition(int[] data, int start, int end, ArrayList<Operation> ops) {
+    private int partition(int[] data, int start, int end, Stack<Operation> ops) {
         int pivot = data[start];
         int i = start - 1;
         int j = end + 1;
