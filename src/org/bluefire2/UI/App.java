@@ -18,6 +18,15 @@ public class App {
     private JComboBox<String> sortAlgoComboBox;
     private JLabel arraySizeLabel;
     private JTextField arraySizeTextField;
+    private JLabel operationsCountLabel;
+    private JLabel operationsCountValueLabel;
+    private JLabel swapsCountLabel;
+    private JLabel swapsCountValueLabel;
+    private JLabel lookupsCountLabel;
+    private JLabel lookupsCountValueLabel;
+    private JLabel comparisonsCountLabel;
+    private JLabel comparisonsCountValueLabel;
+    private JPanel countsPanel;
 
     public App() throws ClassNotFoundException {
         HashMap<String, Class> sortImplementations = new HashMap<>();
@@ -64,7 +73,7 @@ public class App {
             // sort!
             Queue<Operation> ops = sort.run(data);
 
-            canvas.init(1, data, ops);
+            canvas.init(1, data, ops, operationsCountValueLabel, swapsCountValueLabel, lookupsCountValueLabel, comparisonsCountValueLabel);
         });
     }
 }
