@@ -3,21 +3,16 @@ package org.bluefire2.UI;
 import org.bluefire2.InvalidOperationException;
 import org.bluefire2.Operations.Operation;
 import org.bluefire2.Operations.Swap;
-import org.bluefire2.Sorts.BubbleSort;
 import org.bluefire2.Sorts.Sort;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.*;
 
 public class App {
 
     private JPanel mainPanel;
-    private Renderer canvas;
+    private ArrayGraphRenderer canvas;
     private JButton startBtn;
     private JLabel sortAlgoLabel;
     private JComboBox<String> sortAlgoComboBox;
@@ -67,23 +62,9 @@ public class App {
             int[] data = Sort.randomArray(arraySize, 0, arraySize);
 
             // sort!
-            ArrayList<Operation> ops = sort.run(data);
-            int swaps = 0;
-            for(Operation op : ops) {
-                System.out.println(op);
-                try {
-                    op.apply(data);
-                } catch(InvalidOperationException e) {
-                    e.printStackTrace();
-                    return;
-                }
-                if(op instanceof Swap) {
-                    swaps++;
-                }
-            }
+            Queue<Operation> ops = sort.run(data);
 
-            System.out.println(Arrays.toString(data));
-            System.out.println(String.format("Total swaps: %d", swaps));
+            canvas.init(1, data, ops);
         });
     }
 }
