@@ -5,7 +5,7 @@ import org.bluefire2.Operations.Lookup;
 import org.bluefire2.Operations.Operation;
 import org.bluefire2.Operations.Swap;
 
-import java.util.Stack;
+import java.util.Queue;
 import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Sort {
@@ -20,16 +20,16 @@ public abstract class Sort {
      * @param b The index of the second element.
      * @param ops The list of operations to add to.
      */
-    void swap(int[] data, int a, int b, Stack<Operation> ops) {
+    void swap(int[] data, int a, int b, Queue<Operation> ops) {
         int temp = data[a];
         data[a] = data[b];
         data[b] = temp;
 
-        ops.push(new Swap(a, b));
-        ops.push(new Lookup(a));
-        ops.push(new Lookup(b));
-        ops.push(new Lookup(a));
-        ops.push(new Lookup(b));
+        ops.add(new Swap(a, b));
+        ops.add(new Lookup(a));
+        ops.add(new Lookup(b));
+        ops.add(new Lookup(a));
+        ops.add(new Lookup(b));
     }
 
     /**
@@ -40,8 +40,8 @@ public abstract class Sort {
      * @param ops The list of operations to add to.
      * @return The element of `data` at index `i`.
      */
-    int access(int[] data, int i, Stack<Operation> ops) {
-        ops.push(new Lookup(i));
+    int access(int[] data, int i, Queue<Operation> ops) {
+        ops.add(new Lookup(i));
         return data[i];
     }
 
@@ -53,8 +53,8 @@ public abstract class Sort {
      * @param value The value to write.
      * @param ops The list of operations to add to.
      */
-    void set(int[] data, int i, int value, Stack<Operation> ops) {
-        ops.push(new Lookup(i));
+    void set(int[] data, int i, int value, Queue<Operation> ops) {
+        ops.add(new Lookup(i));
         data[i] = value;
     }
 
@@ -68,8 +68,8 @@ public abstract class Sort {
      * @param ops The list of operations to add to.
      * @return True if the two integers are equal, false if they are not equal.
      */
-    boolean equal(int a, int b, Stack<Operation> ops) {
-        ops.push(new Comparison("eq"));
+    boolean equal(int a, int b, Queue<Operation> ops) {
+        ops.add(new Comparison("eq"));
         return a == b;
     }
 
@@ -81,8 +81,8 @@ public abstract class Sort {
      * @param ops The list of operations to add to.
      * @return True if the first integer is less than or equal to the second integer, false if it is not.
      */
-    boolean le(int a, int b, Stack<Operation> ops) {
-        ops.push(new Comparison("le"));
+    boolean le(int a, int b, Queue<Operation> ops) {
+        ops.add(new Comparison("le"));
         return a <= b;
     }
 
@@ -94,8 +94,8 @@ public abstract class Sort {
      * @param ops The list of operations to add to.
      * @return True if the first integer is less than the second integer, false if it is not.
      */
-    boolean lt(int a, int b, Stack<Operation> ops) {
-        ops.push(new Comparison("lt"));
+    boolean lt(int a, int b, Queue<Operation> ops) {
+        ops.add(new Comparison("lt"));
         return a < b;
     }
 
@@ -107,8 +107,8 @@ public abstract class Sort {
      * @param ops The list of operations to add to.
      * @return True if the first integer is greater than the second integer, false if it is not.
      */
-    boolean gt(int a, int b, Stack<Operation> ops) {
-        ops.push(new Comparison("gt"));
+    boolean gt(int a, int b, Queue<Operation> ops) {
+        ops.add(new Comparison("gt"));
         return a > b;
     }
 
@@ -122,12 +122,12 @@ public abstract class Sort {
      * @param ops The list of operations to add to.
      * @return True if the first integer is greater than or equal to the second integer, false if it is not.
      */
-    boolean ge(int a, int b, Stack<Operation> ops) {
-        ops.push(new Comparison("ge"));
+    boolean ge(int a, int b, Queue<Operation> ops) {
+        ops.add(new Comparison("ge"));
         return a >= b;
     }
 
-    public abstract Stack<Operation> run(int[] data);
+    public abstract Queue<Operation> run(int[] data);
 
     public static int[] randomArray(int size, int min, int max) {
         int[] data = new int[size];

@@ -2,12 +2,13 @@ package org.bluefire2.Sorts;
 
 import org.bluefire2.Operations.Operation;
 
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class HeapSort extends Sort {
     @Override
-    public Stack<Operation> run(int[] data) {
-        final Stack<Operation> ops = new Stack<>();
+    public Queue<Operation> run(int[] data) {
+        final Queue<Operation> ops = new LinkedList<>();
         int[] dataCopy = new int[data.length];
         System.arraycopy(data, 0, dataCopy, 0, data.length);
 
@@ -29,7 +30,7 @@ public class HeapSort extends Sort {
     }
 
     // turns the array into a heap, in-place
-    private void heapify(int[] data, Stack<Operation> ops) {
+    private void heapify(int[] data, Queue<Operation> ops) {
         int end = data.length - 1;
         int start = parent(end); // start from the parent of the last element
 
@@ -40,7 +41,7 @@ public class HeapSort extends Sort {
     }
 
     // repair the heap whose root is at `start`
-    private void siftDown(int[] data, int start, int end, Stack<Operation> ops) {
+    private void siftDown(int[] data, int start, int end, Queue<Operation> ops) {
         int root = start; // root of the current heap
 
         while(leftChild(root) <= end) { // repeat until the end of the array

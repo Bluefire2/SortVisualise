@@ -2,12 +2,13 @@ package org.bluefire2.Sorts;
 
 import org.bluefire2.Operations.Operation;
 
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class SelectionSort extends Sort {
     @Override
-    public Stack<Operation> run(int[] data) {
-        final Stack<Operation> ops = new Stack<>();
+    public Queue<Operation> run(int[] data) {
+        final Queue<Operation> ops = new LinkedList<>();
         int[] dataCopy = new int[data.length];
         System.arraycopy(data, 0, dataCopy, 0, data.length);
 
