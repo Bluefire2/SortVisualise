@@ -35,11 +35,12 @@ public class ArrayGraphRenderer extends JComponent implements ActionListener {
         super.paintComponent(g);
 
         // drawing code goes here
+        // graph the data[] array basically
     }
 
     private void update() {
-        // do stuff
         if(!ops.isEmpty()) {
+            // there are more operations left
             try {
                 Operation current = ops.remove();
                 current.apply(data);
@@ -58,6 +59,7 @@ public class ArrayGraphRenderer extends JComponent implements ActionListener {
                 e.printStackTrace();
             }
         } else {
+            // stop the timer when we're done
             System.out.println("Done!");
             timer.stop();
         }
