@@ -27,6 +27,8 @@ public class App {
     private JLabel comparisonsCountLabel;
     private JLabel comparisonsCountValueLabel;
     private JPanel countsPanel;
+    private JLabel timeDelayLabel;
+    private JTextField timeDelayField;
 
     public App() throws ClassNotFoundException {
         HashMap<String, Class> sortImplementations = new HashMap<>();
@@ -52,7 +54,7 @@ public class App {
             try {
                 arraySize = Integer.parseInt(arraySizeTextField.getText());
             } catch(NumberFormatException e) {
-                JOptionPane.showMessageDialog(frame, "Array size must be a number.");
+                JOptionPane.showMessageDialog(frame, "Array size must be a whole number.");
                 return;
             }
 
@@ -67,13 +69,22 @@ public class App {
                 return;
             }
 
+            // retrieve time delay
+            int timeDelay;
+            try {
+                timeDelay = Integer.parseInt(timeDelayField.getText());
+            } catch(NumberFormatException e) {
+                JOptionPane.showMessageDialog(frame, "Time delay must be a whole number.");
+                return;
+            }
+
             // generate random data
             int[] data = Sort.randomArray(arraySize, 0, arraySize);
 
             // sort!
             Queue<Operation> ops = sort.run(data);
 
-            canvas.init(1, data, ops, operationsCountValueLabel, swapsCountValueLabel, lookupsCountValueLabel, comparisonsCountValueLabel);
+            canvas.init(timeDelay, data, ops, operationsCountValueLabel, swapsCountValueLabel, lookupsCountValueLabel, comparisonsCountValueLabel);
         });
     }
 }
