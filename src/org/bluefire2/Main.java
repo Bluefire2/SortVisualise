@@ -15,6 +15,8 @@ public class Main {
         for (int i = 0; i < data.length; i++) {
             data[i] = ThreadLocalRandom.current().nextInt(0, 1000 + 1);
         }
+
+        System.out.println("Unsorted data:");
         System.out.println(Arrays.toString(data));
 
         Sort sort = (Sort)sortImplementation.newInstance();
@@ -34,6 +36,7 @@ public class Main {
             }
         }
 
+        System.out.println("Sorted data:");
         System.out.println(Arrays.toString(data));
         System.out.println(String.format("Total swaps: %d", swaps));
     }
