@@ -2,7 +2,7 @@ package org.bluefire2;
 
 import org.bluefire2.Operations.Operation;
 import org.bluefire2.Operations.Swap;
-import org.bluefire2.Sorts.*;
+import org.bluefire2.Sorts.Sort;
 import org.bluefire2.UI.App;
 
 import java.util.Arrays;
