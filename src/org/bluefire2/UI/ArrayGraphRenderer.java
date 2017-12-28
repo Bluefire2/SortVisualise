@@ -18,10 +18,18 @@ public class ArrayGraphRenderer extends JComponent {
 
     private Queue<Operation> ops = null;
     private int[] data = null;
+    private int maxValue = 0;
     private int swaps = 0,
             lookups = 0,
             comparisons = 0,
             totalOperations = 0;
+
+    private int width;
+    private int height;
+    private int xMargin;
+    private int yMargin;
+    private float xStep;
+    private float yStep;
 
     private JLabel swapLabel;
     private JLabel lookupLabel;
@@ -30,7 +38,7 @@ public class ArrayGraphRenderer extends JComponent {
 
     /**
      * Initialisation method for renderer.
-     *  @param data The array data.
+     * @param data The array data.
      * @param ops The operations to be applied to the array.
      * @param refreshDelay The time delay between each array/graph update.
      * @param opsDataLabel The data label for the total number of operations.
@@ -47,6 +55,12 @@ public class ArrayGraphRenderer extends JComponent {
         this.data = data;
         this.ops = ops;
 
+        for(int elem : data) {
+            if(elem > maxValue) {
+                maxValue = elem;
+            }
+        }
+
         swaps = lookups = comparisons = 0;
 
         // pass in the labels that we need to modify when data updates
@@ -54,6 +68,21 @@ public class ArrayGraphRenderer extends JComponent {
         this.lookupLabel = lookupsDataLabel;
         this.compareLabel = comparisonsDataLabel;
         this.opsLabel = opsDataLabel;
+
+        // reset values
+        swapLabel.setText("0");
+        lookupLabel.setText("0");
+        compareLabel.setText("0");
+        opsLabel.setText("0");
+
+        // initialise values
+        width = getWidth();
+        height = getHeight();
+        xMargin = 0;
+        yMargin = 0; // 0 margins for now
+
+        xStep = ((float)width - 2 * (float)xMargin) / (float)data.length;
+        yStep = ((float)height - 2 * (float)yMargin) / (float)maxValue;
 
         repaint();
     }
@@ -72,10 +101,14 @@ public class ArrayGraphRenderer extends JComponent {
 
             // drawing code goes here
             // graph the data[] array basically
-            int width = getWidth(),
-                    height = getHeight(),
-                    xMargin = width / 50,
-                    yMargin = height / 50;
+            int currX = xMargin;
+
+            for(int elem : data) {
+                int h = (int)Math.floor(elem * yStep);
+                g.fillRect(currX, height - h, (int)xStep, h);
+                //g.fillOval(currX, yStep * elem, xStep / 2, yStep / 2);
+                currX += xStep;
+            }
 
 
             // try to update data, if successful then repaint
