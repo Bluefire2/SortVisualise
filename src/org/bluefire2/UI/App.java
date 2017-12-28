@@ -31,12 +31,14 @@ public class App {
     private JTextField timeDelayField;
 
     public App() throws ClassNotFoundException {
-        HashMap<String, Class> sortImplementations = new HashMap<>();
-        sortImplementations.put("Bubble sort", Class.forName("org.bluefire2.Sorts.BubbleSort"));
-        sortImplementations.put("Selection sort", Class.forName("org.bluefire2.Sorts.SelectionSort"));
-        sortImplementations.put("Insertion sort", Class.forName("org.bluefire2.Sorts.InsertionSort"));
-        sortImplementations.put("Heap sort", Class.forName("org.bluefire2.Sorts.HeapSort"));
-        sortImplementations.put("Quick sort", Class.forName("org.bluefire2.Sorts.QuickSort"));
+        String sortImplementationsPackage = "org.bluefire2.Sorts";
+
+        HashMap<String, String> sortImplementations = new HashMap<>();
+        sortImplementations.put("Bubble sort", "BubbleSort");
+        sortImplementations.put("Selection sort", "SelectionSort");
+        sortImplementations.put("Insertion sort", "InsertionSort");
+        sortImplementations.put("Heap sort", "HeapSort");
+        sortImplementations.put("Quick sort", "QuickSort");
 
         JFrame frame = new JFrame("Sort visualiser");
         frame.setContentPane(mainPanel);
@@ -60,10 +62,17 @@ public class App {
 
             // retrieve implementation for the specified sort
             String sortType = Objects.requireNonNull(sortAlgoComboBox.getSelectedItem()).toString();
-            Class sortImplementation = sortImplementations.get(sortType);
+            String sortImplementationClassName = sortImplementations.get(sortType);
+            Class sortImplementation = null;
+            try {
+                sortImplementation = Class.forName(sortImplementationsPackage + "." + sortImplementationClassName);
+            } catch(ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
             Sort sort;
             try {
-                sort = (Sort)sortImplementation.newInstance();
+                sort = (Sort) Objects.requireNonNull(sortImplementation).newInstance();
             } catch(InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
                 return;
