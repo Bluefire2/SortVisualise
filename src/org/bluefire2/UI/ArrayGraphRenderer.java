@@ -8,16 +8,16 @@ import org.bluefire2.Operations.Swap;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.Queue;
 
-public class ArrayGraphRenderer extends JComponent implements ActionListener {
+public class ArrayGraphRenderer extends JComponent {
     private boolean initDone = false;
+
+    private int refreshDelay = 0;
 
     private Queue<Operation> ops = null;
     private int[] data = null;
-    private Timer timer = null;
     private int swaps = 0,
             lookups = 0,
             comparisons = 0,
@@ -28,14 +28,25 @@ public class ArrayGraphRenderer extends JComponent implements ActionListener {
     private JLabel compareLabel;
     private JLabel opsLabel;
 
-    public void init(int delay, int[] data, Queue<Operation> ops,
+    /**
+     * Initialisation method for renderer.
+     *
+     * @param refreshDelay The time delay between each array/graph update.
+     * @param data The array data.
+     * @param ops The operations to be applied to the array.
+     * @param opsDataLabel The data label for the total number of operations.
+     * @param swapsDataLabel The data label for the number of swaps.
+     * @param lookupsDataLabel The data label for the number of array lookups.
+     * @param comparisonsDataLabel The data label for the number of comparisons.
+     */
+    public void init(int refreshDelay, int[] data, Queue<Operation> ops,
                      JLabel opsDataLabel, JLabel swapsDataLabel, JLabel lookupsDataLabel, JLabel comparisonsDataLabel) {
         initDone = true;
 
+        this.refreshDelay = refreshDelay;
+
         this.data = data;
         this.ops = ops;
-        timer = new Timer(delay, this);
-        timer.start();
 
         swaps = lookups = comparisons = 0;
 
@@ -44,6 +55,8 @@ public class ArrayGraphRenderer extends JComponent implements ActionListener {
         this.lookupLabel = lookupsDataLabel;
         this.compareLabel = comparisonsDataLabel;
         this.opsLabel = opsDataLabel;
+
+        repaint();
     }
 
     @Override
@@ -64,10 +77,29 @@ public class ArrayGraphRenderer extends JComponent implements ActionListener {
                     height = getHeight(),
                     xMargin = width / 50,
                     yMargin = height / 50;
+
+
+            // try to update data, if successful then repaint
+            if(updateData()) {
+                try {
+                    Thread.sleep(refreshDelay);
+                } catch(InterruptedException e) {
+                    e.printStackTrace();
+                }
+                repaint();
+            } else {
+                System.out.println("done!");
+                System.out.println(Arrays.toString(data));
+            }
         }
     }
 
-    private void update() {
+    /**
+     * Method for updating the array based on the operations specified.
+     *
+     * @return true if array has been updated, false if it has not (no more operations or exception thrown).
+     */
+    private boolean updateData() {
         if(!ops.isEmpty()) {
             // there are more operations left
             try {
@@ -86,17 +118,13 @@ public class ArrayGraphRenderer extends JComponent implements ActionListener {
 
             } catch(InvalidOperationException e) {
                 e.printStackTrace();
+                return false;
             }
-        } else {
-            // stop the timer when we're done
-            System.out.println("Done!");
-            timer.stop();
-        }
-    }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        update();
-        repaint();
+            return true;
+        } else {
+            // stop repainting when we're done
+            return false;
+        }
     }
 }
