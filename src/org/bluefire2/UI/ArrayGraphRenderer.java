@@ -30,16 +30,15 @@ public class ArrayGraphRenderer extends JComponent {
 
     /**
      * Initialisation method for renderer.
-     *
-     * @param refreshDelay The time delay between each array/graph update.
-     * @param data The array data.
+     *  @param data The array data.
      * @param ops The operations to be applied to the array.
+     * @param refreshDelay The time delay between each array/graph update.
      * @param opsDataLabel The data label for the total number of operations.
      * @param swapsDataLabel The data label for the number of swaps.
      * @param lookupsDataLabel The data label for the number of array lookups.
      * @param comparisonsDataLabel The data label for the number of comparisons.
      */
-    public void init(int refreshDelay, int[] data, Queue<Operation> ops,
+    public void init(int[] data, Queue<Operation> ops, int refreshDelay,
                      JLabel opsDataLabel, JLabel swapsDataLabel, JLabel lookupsDataLabel, JLabel comparisonsDataLabel) {
         initDone = true;
 

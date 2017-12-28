@@ -1,13 +1,13 @@
 package org.bluefire2.UI;
 
-import org.bluefire2.InvalidOperationException;
 import org.bluefire2.Operations.Operation;
-import org.bluefire2.Operations.Swap;
 import org.bluefire2.Sorts.Sort;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Objects;
+import java.util.Queue;
 
 public class App {
 
@@ -84,7 +84,7 @@ public class App {
             // sort!
             Queue<Operation> ops = sort.run(data);
 
-            canvas.init(timeDelay, data, ops, operationsCountValueLabel, swapsCountValueLabel, lookupsCountValueLabel, comparisonsCountValueLabel);
+            canvas.init(data, ops, timeDelay, operationsCountValueLabel, swapsCountValueLabel, lookupsCountValueLabel, comparisonsCountValueLabel);
         });
     }
 }
