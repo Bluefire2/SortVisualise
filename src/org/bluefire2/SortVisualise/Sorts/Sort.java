@@ -137,4 +137,28 @@ public abstract class Sort {
 
         return data;
     }
+
+    public static int[] randomUniformArray(int length) {
+        // build uniform array, then shuffle it
+        int[] out = new int[length];
+        for(int i = 0; i < length; i++) {
+            out[i] = i + 1;
+        }
+
+        shuffle(out);
+        return out;
+    }
+
+    private static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    private static void shuffle(int[] array) {
+        for (int i = array.length - 1; i > 0; i--) {
+            int n = ThreadLocalRandom.current().nextInt(1, i + 1);
+            swap(array, i, n);
+        }
+    }
 }

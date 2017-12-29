@@ -87,8 +87,8 @@ public class App {
                 return;
             }
 
-            // generate random data
-            int[] data = Sort.randomArray(arraySize, 0, arraySize);
+            // generate random data, uniformly
+            int[] data = Sort.randomUniformArray(arraySize);
 
             // sort!
             Queue<Operation> ops = sort.run(data);
