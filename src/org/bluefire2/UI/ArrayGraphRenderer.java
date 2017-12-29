@@ -18,11 +18,10 @@ public class ArrayGraphRenderer extends JComponent {
 
     private Queue<Operation> ops = null;
     private int[] data = null;
-    private int maxValue = 0;
-    private int swaps = 0,
-            lookups = 0,
-            comparisons = 0,
-            totalOperations = 0;
+    private int swaps,
+            lookups,
+            comparisons,
+            totalOperations;
 
     private int width;
     private int height;
@@ -35,6 +34,10 @@ public class ArrayGraphRenderer extends JComponent {
     private JLabel lookupLabel;
     private JLabel compareLabel;
     private JLabel opsLabel;
+
+    enum UpdateResult {
+        Delay, NoDelay, Fail
+    }
 
     /**
      * Initialisation method for renderer.
@@ -55,13 +58,15 @@ public class ArrayGraphRenderer extends JComponent {
         this.data = data;
         this.ops = ops;
 
+        int maxValue = 0;
+
         for(int elem : data) {
             if(elem > maxValue) {
                 maxValue = elem;
             }
         }
 
-        swaps = lookups = comparisons = 0;
+        swaps = lookups = comparisons = totalOperations = 0;
 
         // pass in the labels that we need to modify when data updates
         this.swapLabel = swapsDataLabel;
@@ -82,7 +87,7 @@ public class ArrayGraphRenderer extends JComponent {
         yMargin = 0; // 0 margins for now
 
         xStep = ((float)width - 2 * (float)xMargin) / (float)data.length;
-        yStep = ((float)height - 2 * (float)yMargin) / (float)maxValue;
+        yStep = ((float)height - 2 * (float)yMargin) / (float) maxValue;
 
         repaint();
     }
@@ -106,15 +111,17 @@ public class ArrayGraphRenderer extends JComponent {
             for(int elem : data) {
                 int h = (int)Math.floor(elem * yStep);
                 g.fillRect(currX, height - h, (int)xStep, h);
-                //g.fillOval(currX, yStep * elem, xStep / 2, yStep / 2);
                 currX += xStep;
             }
 
 
             // try to update data, if successful then repaint
-            if(updateData()) {
+            UpdateResult update = updateData();
+            if(update != UpdateResult.Fail) {
                 try {
-                    Thread.sleep(refreshDelay);
+                    if(update == UpdateResult.Delay) { // only delay if we need to
+                        Thread.sleep(refreshDelay);
+                    }
                 } catch(InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -131,7 +138,7 @@ public class ArrayGraphRenderer extends JComponent {
      *
      * @return true if array has been updated, false if it has not (no more operations or exception thrown).
      */
-    private boolean updateData() {
+    private UpdateResult updateData() {
         if(!ops.isEmpty()) {
             // there are more operations left
             try {
@@ -139,24 +146,30 @@ public class ArrayGraphRenderer extends JComponent {
                 current.apply(data);
 
                 // log the type of operation
+                // delay if it's a swap, if it's a lookup or comparison then don't
                 if(current instanceof Swap) {
-                    swaps++;
+                    swaps++; // don't increment total operations if it's a swap
+                    return UpdateResult.Delay;
                 } else if(current instanceof Lookup) {
                     lookups++;
+                    totalOperations++;
+                    return UpdateResult.NoDelay;
                 } else if(current instanceof Comparison) {
                     comparisons++;
+                    totalOperations++;
+                    return UpdateResult.NoDelay;
+                } else {
+                    // should never happen
+                    return UpdateResult.Fail;
                 }
-                totalOperations++;
 
             } catch(InvalidOperationException e) {
                 e.printStackTrace();
-                return false;
+                return UpdateResult.Fail;
             }
-
-            return true;
         } else {
             // stop repainting when we're done
-            return false;
+            return UpdateResult.Fail;
         }
     }
 }
