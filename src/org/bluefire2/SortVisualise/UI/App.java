@@ -1,7 +1,7 @@
-package org.bluefire2.UI;
+package org.bluefire2.SortVisualise.UI;
 
-import org.bluefire2.Operations.Operation;
-import org.bluefire2.Sorts.Sort;
+import org.bluefire2.SortVisualise.Operations.Operation;
+import org.bluefire2.SortVisualise.Sorts.Sort;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -30,8 +30,8 @@ public class App {
     private JLabel timeDelayLabel;
     private JTextField timeDelayField;
 
-    public App() throws ClassNotFoundException {
-        String sortImplementationsPackage = "org.bluefire2.Sorts";
+    public App() {
+        String sortImplementationsPackage = "org.bluefire2.SortVisualise.Sorts";
 
         HashMap<String, String> sortImplementations = new HashMap<>();
         sortImplementations.put("Bubble sort", "BubbleSort");

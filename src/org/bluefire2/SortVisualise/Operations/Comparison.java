@@ -1,4 +1,4 @@
-package org.bluefire2.Operations;
+package org.bluefire2.SortVisualise.Operations;
 
 public class Comparison implements Operation {
     private final String type;

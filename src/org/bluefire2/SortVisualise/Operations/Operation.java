@@ -1,6 +1,6 @@
-package org.bluefire2.Operations;
+package org.bluefire2.SortVisualise.Operations;
 
-import org.bluefire2.InvalidOperationException;
+import org.bluefire2.SortVisualise.InvalidOperationException;
 
 public interface Operation {
     /**

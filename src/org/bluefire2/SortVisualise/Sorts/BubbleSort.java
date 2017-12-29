@@ -1,6 +1,6 @@
-package org.bluefire2.Sorts;
+package org.bluefire2.SortVisualise.Sorts;
 
-import org.bluefire2.Operations.Operation;
+import org.bluefire2.SortVisualise.Operations.Operation;
 
 import java.util.LinkedList;
 import java.util.Queue;

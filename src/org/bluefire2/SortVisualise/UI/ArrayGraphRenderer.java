@@ -1,10 +1,10 @@
-package org.bluefire2.UI;
+package org.bluefire2.SortVisualise.UI;
 
-import org.bluefire2.InvalidOperationException;
-import org.bluefire2.Operations.Comparison;
-import org.bluefire2.Operations.Lookup;
-import org.bluefire2.Operations.Operation;
-import org.bluefire2.Operations.Swap;
+import org.bluefire2.SortVisualise.InvalidOperationException;
+import org.bluefire2.SortVisualise.Operations.Comparison;
+import org.bluefire2.SortVisualise.Operations.Lookup;
+import org.bluefire2.SortVisualise.Operations.Operation;
+import org.bluefire2.SortVisualise.Operations.Swap;
 
 import javax.swing.*;
 import java.awt.*;

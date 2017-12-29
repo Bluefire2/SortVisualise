@@ -1,9 +1,9 @@
-package org.bluefire2;
+package org.bluefire2.SortVisualise;
 
-import org.bluefire2.Operations.Operation;
-import org.bluefire2.Operations.Swap;
-import org.bluefire2.Sorts.Sort;
-import org.bluefire2.UI.App;
+import org.bluefire2.SortVisualise.Operations.Operation;
+import org.bluefire2.SortVisualise.Operations.Swap;
+import org.bluefire2.SortVisualise.Sorts.Sort;
+import org.bluefire2.SortVisualise.UI.App;
 
 import java.util.Arrays;
 import java.util.Queue;
@@ -44,6 +44,6 @@ public class Main {
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InvalidOperationException, InstantiationException {
         App app = new App();
         // test like this:
-        // testSort(Class.forName("org.bluefire2.Sorts.QuickSort"));
+        // testSort(Class.forName("QuickSort"));
     }
 }

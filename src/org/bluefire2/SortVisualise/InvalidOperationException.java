@@ -1,4 +1,4 @@
-package org.bluefire2;
+package org.bluefire2.SortVisualise;
 
 public class InvalidOperationException extends Exception {
     private final String message;
