@@ -127,8 +127,8 @@ public class ArrayGraphRenderer extends JComponent {
                 }
                 repaint();
             } else {
-                System.out.println("done!");
-                System.out.println(Arrays.toString(data));
+                // System.out.println("done!");
+                // System.out.println(Arrays.toString(data));
             }
         }
     }
