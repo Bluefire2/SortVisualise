@@ -59,6 +59,10 @@ public class App {
                 JOptionPane.showMessageDialog(frame, "Array size must be a whole number.");
                 return;
             }
+            if(arraySize < 0) {
+                JOptionPane.showMessageDialog(frame, "Array size must be non-negative.");
+                return;
+            }
 
             // retrieve implementation for the specified sort
             String sortType = Objects.requireNonNull(sortAlgoComboBox.getSelectedItem()).toString();
@@ -84,6 +88,10 @@ public class App {
                 timeDelay = Integer.parseInt(timeDelayField.getText());
             } catch(NumberFormatException e) {
                 JOptionPane.showMessageDialog(frame, "Time delay must be a whole number.");
+                return;
+            }
+            if(timeDelay < 0) {
+                JOptionPane.showMessageDialog(frame, "Time delay must be non-negative, unfortunately that technology doesn't exist yet.");
                 return;
             }
 
